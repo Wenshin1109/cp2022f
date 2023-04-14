@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>chapter 17-3</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">開發專案(進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            開發軟體專案時，專案被分割為許多工作任務(task)，分配給多位程式設計師。<br>
+            這些 task 有順序關係，只有當順序在前的 task 完成，才開始開發順序在後的 task。可使用有向無環圖，表示這些 task 順序關係。每個節點代表一個 task，節點內的數字為編號， 上方數字代表開發 task 所需時間；邊與箭頭表示開發順序。請計算開發專案所需時間。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            以下圖為例，節點 2 完成後，才能開始節點 4 的開發。 節點 3 與節點 4 都完成後，才能開始節點 5 的開發。<br>
+            節點 1 需 6 小時，節點 2 需 5 小時，節點 3 需 11 小時，節點 4 需 4 小時，節點 5 需 8 小時。<br>
+            完成專案最少需 25 小時。            
+          </p>
+          <img src="/img/ch17/000.png" style="max-height: 300px;">
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            Line 1，正整數 N，代表專案共有 N 個 task。<br>
+            Line 2～N+1，從第 1 個 task 開始依序往後：<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;每一行輸入正整數 T, K, t1~tk；<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;T 是完成此 task 時間，K 表示此 task 完成，後面 K 個 task 才能開始做，<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;t1~tk 表示等待此 task 完成的 task 編號。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            此專案至少需要花費的時間。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/002.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/003.png">
+          </section>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/004.png">
+          </section>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/sFQbdFFm9JI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </section>
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">Keyword: 有向無環圖(DAG)</p>
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            int main(){
+              int n;  // 共有n個task
+              for(int i = 0; i &lt; n; i++){
+                // 輸入第i個task所需時間、完成該task之後才能做後面k個task、後面k個task的編號
+                // 每連結一個節點就計算到此節點完成時間的最大值
+                // 或是將所有節點連接完畢後，每遇到終點就往回計算時間
+              }
+              return 0;
+            }
+          </code></pre> 
+        </section>   
+      </section>
+      <section>
+        <h3 style="text-align: left;">建構唯一二元樹(進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            （使用以下 struct 與 Link List 實作才計分）
+          </p>
+          <pre><code data-trim data-noescape>
+            typedef struct node_s{
+                char data;
+                struct node_s *right, *left;
+            } tree_t;
+            typedef tree_t *btree;
+          </code></pre>
+
+           <p style="font-size: 24px; text-align: left;">
+          給定前序或後序以及中序，建構唯一的二元樹，節點資料為大寫英文字母。輸出樹的節點資料內容，順序為由上而下，由左而右印出（Level-order）。<br>
+            前序代號：P (Preorder)<br>
+            中序代號：I (Inorder)<br>
+            後序代號：O (Postorder)
+        </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            Line 1, n 表示二元樹有 n 個節點。<br>
+            Line 2, 前、中、後序代號。<br>
+            Line 3, 上筆尋訪資料。<br>
+            Line 4, 前、中、後序代號。<br>
+            Line 5, 上筆尋訪資料。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明</p>
+          <p style="font-size: 24px; text-align: left;">
+            輸出唯一二元樹的 內容，由上而下， 由左而右。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/005.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/006.png">
+          </section> 
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/007.png">
+          </section>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch17/008.png">
+          </section>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/XTEe-qa6BBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </section>
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">Keyword: 二元樹走訪</p>
+          <p style="font-size: 24px; text-align: left;">
+            前序(Preorder)：根節點、左子節點、右子節點<br>
+            中序(Inorder)：左子節點、根節點、右子節點<br>
+            後序(Postorder)：左子節點、右子節點、根節點<br>
+            層序(Level-order)：由根節點一層層往下，由左往右。
+          </p>
+        </section> 
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <pre><code data-trim data-noescape>
+            (pseudocode)
+
+            buildTree( ){
+              index: 找出前/後序的某字元在中序的哪個位置
+              if該子樹不存在:
+                return NULL;
+              else:
+                data = index指到的字;
+                左指標指向 buildTree(左子樹);
+                右指標指向 buildTree(右子樹);
+                return 根;
+
+            }
+          </code></pre>
+        </section>
+
+      </section>
+      <section>
+        <section data-auto-animate
+            data-no="17" 
+            data-positionx="0.8" 
+            data-positiony="0.03" 
+            data-scale="1" 
+            data-motionno="0">
+            <h3>Regulations</h3>
+            <p style="font-size: 30px; text-align: left;">
+            ● You should finish your homework on your own. <br>
+            ● Do not share your codes with any living creatures. <br>
+            ● Your HW will get 0 pt if you violate any of the above rules. <br>
+            ● Professor & TAs preserve the rights to change the rules & grades.
+            </p>
+        </section> 
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>

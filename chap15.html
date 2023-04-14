@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>chapter 15</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="vendor/reveal/theme/sky.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/zenburn.css"><!--edit-->
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./dist/bundle.js"></script>
+  <style>
+    ul, ol{
+      list-style: none;
+      margin-left: 0;
+    }
+    .reveal {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #pageIndex{
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: #000;
+      color: #fff;
+      font-size: 26px;
+    }
+    .controls{
+      bottom: 24px !important;
+    }
+    table{
+      font-size: 24px !important;
+      border-style: double !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+         data-no: 老師網頁的cubism人物編號(從0開始，網頁上的編號-1)
+         data-positionx: cubism人物水平位移範圍(建議-1 ~ 0.9)
+         data-positiony: cubism人物垂直位移範圍(建議-0.9~0.4)
+         data-scale: cubism人物縮放(建議1~2之間的小數值，最大極限是3)
+         data-motionno: cubism人物指定動作編號(從0開始，請參閱model3.json檔案的ALL MOTION GROUP)
+      -->
+
+      <!--Q1-->
+      <section>
+        <h3 style="text-align: left;">課程教室排程(進階題)</h3>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left;">
+            某大學有許多課程須要分配不同教室上課，教室 24 小時開放，每一個課程有不同的使用時間。由於課程眾多，可能發生時間衝突，教務處安排這些課程，優先選取時間上不衝突的課程安排教室。學校希望所有教室能做最有效的利用。教室有容納人數上限，課程有修課人數。<br>
+            說明：每堂課程須全程在某間教室上完，中途不得更改教室。
+          </p>
+        </section>
+        <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸入說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            1. 第一行輸入兩個整數 M, N，M 是教室數量，N 是課程數。<br>
+            2. 其後 M 行，每一行有 2 個正整數以空白隔開，代表教室編號與容量。<br>
+            3. 其後 N 行，每一行有 4個正整數以空白隔開，代表每一個課程的編號、人數、開始時間、結束時間。時間以 0 代 表凌晨 12 點，18 代表下午六點。例如： 1102 50 1 4 #課程 1102 有 50 人用 1 點-4 點共 3 小時。 2103 30 3 15 #課程 2103 有 50 人 用 3點-15 點共 12小時。<br>
+            4. 最後一行，正整數 b，b=0表示不考慮人數限制，b=1，表示要考慮人數限制。b=2，表示要考慮人數限制，且要輸出課程編號與教室編號。
+          </p>
+          <p style="font-size: 24px; text-align: left; font-weight: bold;">
+            輸出說明
+          </p>
+          <p style="font-size: 24px; text-align: left;">
+            1.計算安排到的所有課程，輸出能使用最高總時數。<br>
+            2.計算安排到的所有課程，輸出能使用的最多課程數。若 b=2，輸出課程編號與教室。<br>
+            3. 若有相同，取編號數小的優先輸出。
+          </p>
+        </section>
+      </section>
+      <section>
+          <h3>Input/Output</h3>
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch15/001.png">
+          </section>        
+          <section data-auto-animate
+          data-no="6" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+            <img src="img/ch15/002.png">
+          </section> 
+      </section>
+      <section>
+        <section data-auto-animate
+          data-no="17" 
+          data-positionx="0.8" 
+          data-positiony="0.03" 
+          data-scale="1" 
+          data-motionno="0">
+          <h3>hints</h3>
+          <pre><code data-trim data-noescape>
+            #include &lt;stdio.h&gt;
+            int main(){
+              // 輸入：M間教室 N個課程
+              // M行：教室編號 容量
+              // N行：課程編號 人數 開始時間 結束時間 (24時制)
+              if(b == 0){
+                // 不用考慮人數限制（只要看時間排）
+              }
+              else if(b == 1){
+                // 要考慮人數限制
+              }
+              else if(b == 2){
+                // 要考慮人數限制、要輸出課程編號與教室編號
+              }
+              return 0;
+            }
+          </code></pre> 
+        </section> 
+        <section data-auto-animate
+            data-no="17" 
+            data-positionx="0.8" 
+            data-positiony="0.03" 
+            data-scale="1" 
+            data-motionno="0">
+            <h3>Regulations</h3>
+            <p style="font-size: 30px; text-align: left;">
+            ● You should finish your homework on your own. <br>
+            ● Do not share your codes with any living creatures. <br>
+            ● Your HW will get 0 pt if you violate any of the above rules. <br>
+            ● Professor & TAs preserve the rights to change the rules & grades.
+            </p>
+        </section>   
+      </section>
+    </div>
+  </div>
+  <div id="pageIndex"></div>
+  <!-- reveal.js-->
+  <script src="vendor/reveal/reveal.js"></script>
+  <!--plugin-->
+  <script src="vendor/reveal/plugin/math/math.js"></script>
+  <script src="vendor/reveal/plugin/search/search.js"></script>
+  <script src="vendor/reveal/plugin/zoom/zoom.js"></script>
+
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/markdown/markdown.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+  <script src="main-ppt.js"></script>
+</body>
+
+</html>
